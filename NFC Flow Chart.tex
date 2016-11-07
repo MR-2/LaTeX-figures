@@ -1,0 +1,126 @@
+%%*****************************************************************************%%
+%																				%
+%																				%
+%								LEAVE ME HERE									%
+%																				%
+%																				%
+%              _____ ______   ________                   _______   				%  
+%             |\   _ \  _   \|\   __  \                 /  ___  \    			%
+%             \ \  \\\__\ \  \ \  \|\  \  ____________ /__/|_/  /|   			%
+%              \ \  \\|__| \  \ \   _  _\|\____________\__|//  / /   			%
+%               \ \  \    \ \  \ \  \\  \\|____________|   /  /_/__  			%
+%                \ \__\    \ \__\ \__\\ _\                |\________\			%
+%                 \|__|     \|__|\|__|\|__|                \|_______|			%
+%                                                      							%
+%																				%
+%%*****************************************************************************%%
+%									Links										%
+%																				%
+%		x Read only : https://www.overleaf.com/read/cbyszsvcrpft				%
+%		x Edit&Read : https://www.overleaf.com/6594051ynnzzx					%
+%		x Github	: https://www.github.com/MR-2								%
+%																				%
+%%*****************************************************************************%%
+%							About - This Document								%
+%																				%
+%		x	 NFC FLOW CHART														%
+%																				%
+%		Note: Use it however you want.											%
+%																				%
+%%*****************************************************************************%%
+%									Setup										%
+%																				%
+\documentclass[%
+    varwidth
+    ,float=false % this is the new default and can be left away.
+    ,preview=true
+    ,class=scrartcl,english
+    ]{standalone}
+
+%% LLT: to use the \includestandalone command
+\usepackage{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{siunitx}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\definecolor{LiUblue}{RGB}{0,185,231}
+\definecolor{LiUorange3}{RGB}{255,164,154}
+\definecolor{LiUturquoise}{RGB}{23,199,210}
+\definecolor{LiUgreen}{RGB}{0,207,181}
+\usetikzlibrary{quotes,arrows.meta}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{decorations.text}
+\begin{document}
+\pagestyle{empty}
+
+%%*****************************************************************************%%
+%																				%
+%								Figure begins									%
+%																				%
+%%*****************************************************************************%%
+\begin{tikzpicture}[node distance = 2cm, auto]
+\pgfmathsetmacro{\cubex}{3}
+\pgfmathsetmacro{\cubey}{1}
+\pgfmathsetmacro{\cubez}{1}
+%%********************************%NFC tag*************************************%%
+\node [text width=3cm] at (8.3,2.5) {NFC tag}; 
+%Antenna
+\draw (6.5,0.85) ellipse (0.7cm and 0.3cm);
+\draw(6.5,0.8) ellipse (0.7cm and 0.3cm);
+\draw (6.5,0.75) ellipse (0.7cm and 0.3cm);
+\draw (6.5,0.7) ellipse (0.7cm and 0.3cm); 
+\node [font=\fontsize{8}{144}\selectfont] at (6.9,1.5) {Antenna};
+%Card
+\draw[draw=LiUturquoise,rounded corners=5pt] (5,-0.5) rectangle (9,2);
+%RF Circuit
+\draw [dashed,rounded corners=2pt] (7.6,0.3) rectangle (8.6,1.3);
+\draw  (7.6,0.5) -- (6.9,0.5);
+\draw  (7.6,1) -- (6.9,1);
+\node [font=\fontsize{6}{144}\selectfont] at (8.1,0.9) {RF}; 
+\node [font=\fontsize{6}{144}\selectfont] at (8.1,0.6) {Circuit};
+%%***************************Magnetic Field************************************%%
+% Insert more fields?g2
+\draw[LiUorange3!35]  (1,0.75) circle [radius=.5];
+\draw[LiUorange3!40]  (1.45,0.75) circle [radius=1];
+\draw[LiUorange3!50]  (1.9,0.75) circle [radius=1.5];
+\draw[LiUorange3!60]  (2.4,0.75) circle [radius=2.0];
+\draw[LiUorange3!70]  (2.85,0.75) circle [radius=2.5];
+\draw[orange!80]  (3.3,0.75) circle [radius=3];
+\draw[LiUorange3!70]  (3.75,0.75) circle [radius=3.5];
+\draw[LiUorange3!55]  (4.2,0.75) circle [radius=4];
+\draw[LiUorange3!40]  (4.65,0.75) circle [radius=4.5];
+\node [font=\fontsize{10}{144}\selectfont] at (-1,-2) {\SI{13.56}{\MHz}};
+\node [font=\fontsize{10}{144}\selectfont] at (-0.1,-2.5) {Electromagnetic Field};
+%%*****************************%NFC reader**************************************%%
+\node [text width=3cm] at (-0.7,2.5) {NFC Reader}; 
+%Antenna
+\draw (0.5,0.85) ellipse (0.7cm and 0.3cm);
+\draw (0.5,0.8) ellipse (0.7cm and 0.3cm);
+\draw (0.5,0.75) ellipse (0.7cm and 0.3cm);
+\draw (0.5,0.7) ellipse (0.7cm and 0.3cm);
+\node [font=\fontsize{8}{144}\selectfont] at (-0.4,0.1) {Antenna};
+%Reader
+\draw [draw=green,rounded corners=5pt] (2,-0.5) rectangle (-2,2);
+%RF Circuit
+\draw [dashed,rounded corners=2pt] (-1.7,0.3) rectangle (-0.7,1.3);
+\draw  (-0.7,0.5) -- (0,0.5);
+\draw  (-0.7,1) -- (0,1);
+\node [font=\fontsize{6}{144}\selectfont] at (-1.2,0.9) {RF}; 
+\node [font=\fontsize{6}{144}\selectfont] at (-1.2,0.6) {Circuit}; 
+%%*******************************%Arrows***************************************%%
+\draw [->,LiUblue,line width=1mm,postaction={decorate,decoration={raise=1.5ex,text along path,text align=center,text={|\sffamily|Energy}}}] (0.5,0.8) to [out=70,in=110] (6.5,0.8);
+%AM
+\draw [->,black,line width=0.7mm,postaction={decorate,decoration={raise=1ex,text along path,text align=center,text={|\sffamily|ASK}}}] (0.5,1.8)  to [out=70,in=180] (3.5,4.2);
+%Load
+\draw [<-,black,line width=0.7mm,postaction={decorate,decoration={raise=1ex,text along path,text align=center,text={|\sffamily|Load modulation}}}] (3.5,-2.8) to [out=0,in=-110] (7.05,-0.3);
+%%*******************************%Notes****************************************%%
+%Copyright
+\node [font=\fontsize{8}{144}\selectfont] at (8.5,-3.5) {© - Olof Samuelsson};
+%%*****************************************************************************%%
+%										EOD										%
+%																				%
+%%*****************************************************************************%%
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,88 @@
+%%*****************************************************************************%%
+%																				%
+%																				%
+%								LEAVE ME HERE									%
+%																				%
+%																				%
+%              _____ ______   ________                   _______   				%  
+%             |\   _ \  _   \|\   __  \                 /  ___  \    			%
+%             \ \  \\\__\ \  \ \  \|\  \  ____________ /__/|_/  /|   			%
+%              \ \  \\|__| \  \ \   _  _\|\____________\__|//  / /   			%
+%               \ \  \    \ \  \ \  \\  \\|____________|   /  /_/__  			%
+%                \ \__\    \ \__\ \__\\ _\                |\________\			%
+%                 \|__|     \|__|\|__|\|__|                \|_______|			%
+%                                                      							%
+%																				%
+%%*****************************************************************************%%
+%									Links										%
+%																				%
+%		x Read only : https://www.overleaf.com/read/zbqsbjggnrgh				%
+%		x Edit&Read : https://www.overleaf.com/6894816htxnscpwvmbs				%
+%		x Github	: https://www.github.com/MR-2								%
+%																				%
+%%*****************************************************************************%%
+%							About - This Document								%
+%																				%
+%		x	 Bloch Sphere														%
+%																				%
+%		Note: Use it however you want.											%
+%																				%
+%%*****************************************************************************%%
+%									Setup										%
+%																				%
+\documentclass[%
+    varwidth
+    ,float=false % this is the new default and can be left away.
+    ,preview=true
+    ,class=scrartcl
+    ]{standalone} 
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{quotes,arrows.meta,3d}
+\tikzset{>=latex} % Nice arrows.
+\begin{document}
+\pagestyle{empty}
+%%*****************************************************************************%%
+%																				%
+%								Figure begins									%
+%																				%
+%%*****************************************************************************%%
+\begin{tikzpicture}[scale=4]
+%%***********************%Circle for depth%************************************%%
+   \begin{scope}[canvas is zy plane at x=0]
+     \draw [opacity=0.3] (0,0) circle (1cm);
+									%Axis%
+     \draw[ultra thick, black,->] (0,0) -- (0,1);
+      \draw (-0.3,0) arc (180:90:0.3);
+   \end{scope}
+%%***********************%Circle for width%************************************%%
+   \begin{scope}[canvas is zx plane at y=0]
+	\draw [dashed] (0,0) circle (1cm);
+									%Axis%
+	 \draw[ultra thick, black,->] (0,0) -- (1,0);
+     \draw[ultra thick, black,->] (0,0) -- (-1,0);
+     							   %Phi box%
+     \draw (0,0.3) -- (0.4,0.3);
+   \end{scope}
+%%***********************%Circle for height%***********************************%%
+   \begin{scope}[canvas is xy plane at z=0]
+	\draw (0,0) circle (1cm);
+									%Axis%
+	 \draw[ultra thick, black,->] (0,0) -- (1,0);
+     							  %Phi box%
+     \draw (-0.15,-0.15) -- (0.15,-0.15);
+   \end{scope}
+%%**********************************%Text%************************************%%
+\node [font=\fontsize{10}{144}\selectfont] at (0.05,-1.1) {-$\hat{Z}$|1>};
+\node [font=\fontsize{10}{144}\selectfont] at (1.1,0) {$\hat{Y}$};
+\node [font=\fontsize{10}{144}\selectfont] at (0,1.1) {$\hat{Z}$|0>};
+\node [font=\fontsize{10}{144}\selectfont] at (-0.45,-0.46) {$\hat{X}$};
+\node [font=\fontsize{10}{144}\selectfont] at (0.47,0.47) {-$\hat{X}$};
+\node [font=\fontsize{15}{144}\selectfont] at (0.2,0.3) {$\theta$};
+\node [font=\fontsize{15}{144}\selectfont] at (0,-0.23) {$\phi$};
+%%*****************************************************************************%%
+%										EOD										%
+%																				%
+%%*****************************************************************************%%
+\end{tikzpicture}
+\end{document}
