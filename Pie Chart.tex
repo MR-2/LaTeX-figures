@@ -1,0 +1,119 @@
+%%*****************************************************************************%%
+%																				%
+%																				%
+%								LEAVE ME HERE									%
+%																				%
+%																				%
+%              _____ ______   ________                   _______   				%  
+%             |\   _ \  _   \|\   __  \                 /  ___  \    			%
+%             \ \  \\\__\ \  \ \  \|\  \  ____________ /__/|_/  /|   			%
+%              \ \  \\|__| \  \ \   _  _\|\____________\__|//  / /   			%
+%               \ \  \    \ \  \ \  \\  \\|____________|   /  /_/__  			%
+%                \ \__\    \ \__\ \__\\ _\                |\________\			%
+%                 \|__|     \|__|\|__|\|__|                \|_______|			%
+%                                                      							%
+%																				%
+%%*****************************************************************************%%
+%									Links										%
+%																				%
+%		x Read only : https://www.overleaf.com/read/dtrddnycgdpj				%
+%		x Edit&Read : https://www.overleaf.com/6915557vxmcyvfjhtfb				%
+%		x Github	: https://www.github.com/MR-2								%
+%																				%
+%%*****************************************************************************%%
+%							About - This Document								%
+%																				%
+%		x	 Pie Chart															%
+%																				%
+%		Note: Use it however you want.											%
+%																				%
+%%*****************************************************************************%%
+%									Setup										%
+%																				%
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes,shadows}
+									% Colors
+\definecolor{LiUblue}{RGB}{0,185,231}
+\definecolor{LiUturquoise}{RGB}{23,199,210}
+\definecolor{LiUgreen}{RGB}{0,207,181}
+
+\definecolor{LiUblue2}{RGB}{91,202,236}
+\definecolor{LiUturquoise2}{RGB}{101,207,216}
+\definecolor{LiUgreen2}{RGB}{86,214,192}
+
+\definecolor{LiUblue3}{RGB}{143,215,241}
+\definecolor{LiUturquoise3}{RGB}{150,218,225}
+\definecolor{LiUgreen3}{RGB}{143,223,207}
+
+\definecolor{LiUblue4}{RGB}{189,230,246}
+\definecolor{LiUturquoise4}{RGB}{194,231,236}
+\definecolor{LiUgreen4}{RGB}{191,235,225}
+
+\definecolor{LiUblue5}{RGB}{210,238,249}
+\definecolor{LiUturquoise5}{RGB}{215,239,242}
+\definecolor{LiUgreen5}{RGB}{213,241,235}
+
+\definecolor{LiUorange}{RGB}{255,100,66}
+\definecolor{LiUpurple}{RGB}{137,129,211}
+\definecolor{LiUyellow}{RGB}{253,239,93}
+\definecolor{LiUgray}{RGB}{106,126,145}
+
+\definecolor{LiUorange3}{RGB}{255,164,154}
+\definecolor{LiUpurple3}{RGB}{183,180,225}
+\definecolor{LiUyellow3}{RGB}{254,244,165}
+\definecolor{LiUgray3}{RGB}{170,178,187}
+
+\definecolor{LiUorange5}{RGB}{255,220,216}
+\definecolor{LiUpurple5}{RGB}{226,224,242}
+\definecolor{LiUyellow5}{RGB}{254,250,220}
+\definecolor{LiUgray5}{RGB}{221,224,227}
+
+\definecolor{LiUhomepage}{RGB}{84,216,224}	
+\global\edef\lastangle{0}
+\newcounter{sectornumber}
+							% Defintion of Pie (Not pi)
+\newcommand{\ring}[4]{% angles&colors, inner, outer radius, height
+\begin{scope}[x={(0.866cm,0.5cm)},y={(-0.866cm,0.5cm)},z={(0cm,1cm)}]
+\global\edef\lastangle{0}
+\setcounter{sectornumber}{1}
+\foreach \x/\ringcolor in {#1}
+{   \pgfmathsetmacro{\na}{\lastangle+\x*3.6}
+    \colorlet{darkercolor}{\ringcolor!60!black}
+    \colorlet{darkestcolor}{\ringcolor!20!black}
+    \shadedraw[top color=darkercolor,bottom color=darkestcolor,draw=darkercolor] (\lastangle:#2) arc (\lastangle:\na:#2) -- ++(0,0,#4) arc (\na:\lastangle:#2) -- cycle;
+    \shadedraw[top color=darkercolor,bottom color=darkestcolor,draw=darkercolor] (\lastangle:#3) arc (\lastangle:\na:#3) -- ++(0,0,#4) arc (\na:\lastangle:#3) -- cycle;
+    \global\edef\lastangle{\na}
+}
+\global\edef\lastangle{0}
+\foreach \x/\ringcolor in {#1}
+{   \pgfmathsetmacro{\na}{\lastangle+\x*3.6}
+    \colorlet{darkercolor}{\ringcolor!60!black}
+    \colorlet{darkestcolor}{\ringcolor!20!black}
+    \fill[\ringcolor,draw=darkercolor] (0,0,#4) ++(\lastangle:#2) arc (\lastangle:\na:#2) -- ++(\na:#3-#2) arc (\na:\lastangle:#3) -- cycle;
+    \pgfmathsetmacro{\nodepos}{(#3+#2)*0.5}
+    \node (n\thesectornumber) at ($(0,0,#4)+(\lastangle+\x*1.8:\nodepos)$) {};
+    \stepcounter{sectornumber}
+    \global\edef\lastangle{\na}
+}
+\end{scope}
+}
+%%*****************************************************************************%%
+%																				%
+%							 Awesomeness begins									%
+%																				%
+%%*****************************************************************************%%
+\begin{document}
+\begin{tikzpicture}
+\ring{33.33333333333333333333/LiUblue!80!gray,33.33333333333333333333/LiUgreen!80!gray,33.33333333333333333333/LiUorange!80!gray}{3}{4}{0.5}
+\foreach \x/\label in {1/Text 1,2/Text 2,3/Text 3}
+{   \draw[thick] (n\x) -- ++(0,1.4) node[fill=white,draw,rounded rectangle,inner sep=14pt,thin,fill opacity=0.7,text opacity=1] {\Large\label};
+}
+\end{tikzpicture}
+%%*****************************************************************************%%
+%																				%
+%							 		  EOD   									%
+%																				%
+%%*****************************************************************************%%
+\end{document}
